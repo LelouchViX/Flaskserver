@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, redirect
 from flask_cors import CORS
 import stripe
+import os
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -60,4 +61,5 @@ def cancel():
     return "<h1>Payment Cancelled</h1>"
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Get port from environment variable or default to 5000
+    app.run(host='0.0.0.0', port=port)
