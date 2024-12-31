@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Pay for Test Product</h1>
+    <button id="checkout-button">Pay $20</button>
+    <script>
+        const stripe = Stripe("pk_test_51QUN2JJCvP46CUpYjuZLDduSXE0RXA0VDgYukOUGGAC4x985jkTuTqEpdxQ2HY89yZe2NusDpiMI3z8pHKmay3KL00YKWw4t8I"); // Replace with your publishable key
+        document.getElementById("checkout-button").addEventListener("click", async () => {
+            const response = await fetch("/create-checkout-session", {
+                method: "POST",
+            });
+            const session = await response.json();
+            stripe.redirectToCheckout({ sessionId: session.id });
+        });
+    </script>
+</body>
+</html>
