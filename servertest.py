@@ -31,8 +31,8 @@ def create_checkout_session():
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='http://127.0.0.1:5000/success?session_id={CHECKOUT_SESSION_ID}',  # Replace with your URL
-            cancel_url='http://127.0.0.1:5000/cancel',  # Replace with your URL
+            success_url='https://flaskserver-5dpg.onrender.com/success?session_id={CHECKOUT_SESSION_ID}',  # Replace with your URL
+            cancel_url='https://flaskserver-5dpg.onrender.com/cancel',  # Replace with your URL
         )
         return jsonify({'id': session.id})
     except Exception as e:
